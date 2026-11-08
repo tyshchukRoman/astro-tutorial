@@ -1,0 +1,40 @@
+---
+import Social from './Social.astro';
+
+const socials = [
+  {
+    platform: 'github',
+    username: 'tyshuckRoman'
+  },
+  {
+    platform: 'twitter',
+    username: 'tyshuckRoman'
+  },
+  {
+    platform: 'youtube',
+    username: 'tyshuckRoman'
+  },
+];
+---
+
+<footer>
+  <p>Learn more about my projects on:</p>
+  <ul class="socials">
+    {socials.map(social => (
+      <li>
+        <Social platform={social.platform} username={social.username} />
+      </li>
+    ))}
+  </ul>
+</footer>
+
+<style>
+  .socials {
+    margin-top: 1rem;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+  }
+</style>
