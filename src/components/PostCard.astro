@@ -1,0 +1,22 @@
+---
+const { url, title, image } = Astro.props; 
+---
+
+<style>
+  .post-card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .post-card img {
+    aspect-ratio: 3 / 2;
+    max-width: 100%;
+  }
+</style>
+
+<a href={url}>
+  <article class="post-card">
+    <img src={image.url} alt={image.alt || title} />
+      <h3>{title}</h3>
+  </article>
+</a>

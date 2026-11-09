@@ -1,24 +1,21 @@
 ---
-import Navigation from '../../components/Navigation.astro';
-import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+const pageTitle = "Our Blog";
+
+const posts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-    <Navigation />
-		<h1>Blog</h1>
-    <ul>
-      <li><a href="/posts/post-1/">Post 1</a></li>
-      <li><a href="/posts/post-2/">Post 2</a></li>
-      <li><a href="/posts/post-3/">Post 3</a></li>
-    </ul>
-	</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; padding: 0;">
+    {posts.map((post: any) => (
+      <li>
+        <PostCard 
+          url={post.url} 
+          title={post.frontmatter.title} 
+          image={post.frontmatter.image} 
+        />
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
